@@ -25,3 +25,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.css-18sg6k4-MuiPaper-root-MuiDrawer-paper {
+  /* background varian of gray */
+  background-color: #e7e7e7;
+}
