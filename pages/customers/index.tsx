@@ -1,11 +1,12 @@
+import CommonLayout from "@/components/common/CommonLayout";
 
 
 const Customers = () => {
 
     return (
-        <div>
+        <CommonLayout>
             <h1>Customers</h1>
-        </div>
+        </CommonLayout>
     );
     
 }
