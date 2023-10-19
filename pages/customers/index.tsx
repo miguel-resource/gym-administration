@@ -3,23 +3,24 @@ import SearchData from "@/components/common/SearchData";
 import { Chip, IconButton } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 import { faker } from "@faker-js/faker";
 import TableData from "@/components/common/TableData";
+import NoData from "@/components/common/NoData";
 
 const Customers = () => {
   const [data, setData] = useState<any[]>([]);
   const [displayData, setDisplayData] = useState<any[]>([]);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", width: 300 },
     {
-        field: "email",
-        headerName: "Email",
-        width: 300,
+      field: "email",
+      headerName: "Email",
+      width: 300,
     },
     {
       field: "created_at",
@@ -40,11 +41,11 @@ const Customers = () => {
           <Chip
             label={params.value}
             color={
-                params.value === "Active"
-                    ? "success"
-                    : params.value === "Inactive"
-                    ? "error"
-                    : "warning"
+              params.value === "Active"
+                ? "success"
+                : params.value === "Inactive"
+                ? "error"
+                : "warning"
             }
           />
         </>
@@ -57,10 +58,11 @@ const Customers = () => {
       width: 160,
       renderCell: () => (
         <>
-          <IconButton>
-            <EditIcon />
-          </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
             <DeleteIcon className="text-red-500" />
           </IconButton>
         </>
@@ -68,14 +70,11 @@ const Customers = () => {
     },
   ];
 
-
-
-
   const generateData = () => {
     return {
       id: faker.string.uuid(),
       name: faker.person.fullName(),
-        email: faker.internet.email(),
+      email: faker.internet.email(),
       created_at: faker.date.past().toLocaleDateString().replaceAll("/", "-"),
       updated_at: faker.date.future().toLocaleDateString().replaceAll("/", "-"),
       status: faker.helpers.shuffle(["Active", "Inactive", "Pending"])[0],
@@ -105,14 +104,19 @@ const Customers = () => {
             className="flex justify-center items-center  mt-24 text-sm rounded-none"
             // variant="text"
           >
-            <AddCircleIcon /> Add Product
+            <AddCircleIcon /> Add Customer
           </IconButton>
         </div>
 
         {displayData.length > 0 ? (
-          <TableData columns={columns} rows={displayData} />
+          <TableData
+            columns={columns}
+            rows={displayData}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+          />
         ) : (
-          <h1>No Data</h1>
+         <NoData />
         )}
       </section>
     </CommonLayout>

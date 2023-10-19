@@ -8,13 +8,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { faker } from "@faker-js/faker";
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import NoData from "@/components/common/NoData";
 const Subscriptions = () => {
-
-const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>([]);
   const [displayData, setDisplayData] = useState<any[]>([]);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const columns: GridColDef[] = [
     {
@@ -31,14 +32,16 @@ const [data, setData] = useState<any[]>([]);
         <>
           <Chip
             icon={
-              params.value === "Yearly"
-                ? <WorkspacePremiumIcon />
-                : params.value === "Monthly"
-                ? <CalendarMonthIcon />
-                : params.value === "Weekly"
-                ? <Brightness4Icon />
-                : <Brightness4Icon />
-            } 
+              params.value === "Yearly" ? (
+                <WorkspacePremiumIcon />
+              ) : params.value === "Monthly" ? (
+                <CalendarMonthIcon />
+              ) : params.value === "Weekly" ? (
+                <Brightness4Icon />
+              ) : (
+                <Brightness4Icon />
+              )
+            }
             label={params.value}
             color={
               params.value === "Yearly"
@@ -70,7 +73,6 @@ const [data, setData] = useState<any[]>([]);
       renderCell: (params) => (
         <>
           <Chip
-          
             label={params.value}
             color={
               params.value === "Active"
@@ -88,12 +90,14 @@ const [data, setData] = useState<any[]>([]);
       headerName: "",
       sortable: false,
       width: 160,
+      
       renderCell: () => (
         <>
-          <IconButton>
-            <EditIcon />
-          </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
             <DeleteIcon className="text-red-500" />
           </IconButton>
         </>
@@ -123,7 +127,7 @@ const [data, setData] = useState<any[]>([]);
   }, []);
   return (
     <CommonLayout>
-       <section className="flex flex-col items-center justify-center w-full">
+      <section className="flex flex-col items-center justify-center w-full">
         <div className="flex justify-center gap-4 items-center w-full mt-10">
           <SearchData
             data={data}
@@ -134,14 +138,19 @@ const [data, setData] = useState<any[]>([]);
             className="flex justify-center items-center  mt-24 text-sm rounded-none"
             // variant="text"
           >
-            <AddCircleIcon /> Add Customer
+            <AddCircleIcon /> Add Subscription
           </IconButton>
         </div>
 
         {displayData.length > 0 ? (
-          <TableData columns={columns} rows={displayData} />
+          <TableData
+            columns={columns}
+            rows={displayData}
+            setOpenModal={setOpenModal}
+            openModal={openModal}
+          />
         ) : (
-          <h1>No Data</h1>
+          <NoData />
         )}
       </section>
     </CommonLayout>

@@ -18,8 +18,13 @@ const Chart = () => {
     datasets: [
       {
         label: "Sales",
-        data: labels.map(() => Math.floor(Math.random() * 100)),
+        data: labels.map(() => Math.floor(Math.random() * 100000)),
         backgroundColor: "#c2233b",
+      },
+      {
+        label: "Subscriptions",
+        data: labels.map(() => Math.floor(Math.random() * 10)),
+        backgroundColor: "#3182ce",
       }
     ],
   };
