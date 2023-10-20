@@ -62,7 +62,10 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <main className={`min-h-screen bg-white`}>
-      <AppBar className="flex flex-row items-center justify-between bg-red-600">
+      <AppBar
+        color="error"
+        className="flex flex-row items-center justify-between"
+      >
         <div className="flex flex-row items-center w-full">
           <Toolbar>
             <IconButton
@@ -74,12 +77,11 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
             >
               <MenuIcon />
             </IconButton>
+            <h2>
+              Gym Administration System :{" "}
+              <span className="text-gray-100 font-bold">Administrator</span>
+            </h2>
           </Toolbar>
-          <h2>Gym Administration System</h2>
-        </div>
-
-        <div className="flex flex-row items-center justify-end w-1/4 h-12 mr-10">
-          <h4 className="text-white">Administrator</h4>
         </div>
       </AppBar>
 
@@ -113,9 +115,7 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
           {listIcons.map(({ name, icon, href }, index) => (
             <Link
               className={
-                router.pathname === href
-                  ? "block bg-red-600 text-white"
-                  : "text-gray-600"
+                router.pathname === href ? "block bg-red-600" : "text-gray-600"
               }
               href={href}
               key={index}
@@ -124,9 +124,9 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
               <ListItem key={index} disablePadding>
                 <ListItemButton>
                   <ListItemIcon
-                    className={
-                      router.pathname === href ? "text-white" : "text-gray-600"
-                    }
+                  // className={
+                  //   router.pathname === href ? "text-white" : "text-gray-600"
+                  // }
                   >
                     {icon}
                   </ListItemIcon>
