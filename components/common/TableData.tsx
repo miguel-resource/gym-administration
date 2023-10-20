@@ -1,25 +1,29 @@
 import { Box, Modal } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useEffect } from "react";
+import { useCart } from "react-use-cart";
 
 type Props = {
   columns: any[];
-  rows: any[];
+  rows?: any[];
   openModal: boolean;
   setOpenModal: (open: boolean) => void;
 };
 
 const TableData = ({ columns, rows, openModal, setOpenModal }: Props) => {
+  const { items } = useCart();
+
   return (
     <section className="mx-auto mt-20 space-x-4 mb-24">
       <DataGrid
         onCellEditStop={(e) => console.log(e)}
         columns={columns}
-        rows={rows}
-        loading={rows.length === 0}
+        rows={rows ? rows : items}
         sx={{
           maxHeight: "80vh",
           display: "flex",
           justifyContent: "center",
+          
         }}
         className="p-1"
       />
@@ -56,7 +60,7 @@ const TableData = ({ columns, rows, openModal, setOpenModal }: Props) => {
           >
             Are you sure you want to delete this{" "}
             <span className="text-red-500 font-bold">
-              {rows[0]?.name ? rows[0].name : rows[0]?.customer}
+            {rows ? rows[0].name : "product"  }
             </span>
             ?
           </p>
