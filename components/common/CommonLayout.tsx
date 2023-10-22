@@ -22,7 +22,8 @@ import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { useRouter } from "next/router";
 import LogoutIcon from "@mui/icons-material/Logout";
-import BoyIcon from '@mui/icons-material/Boy';
+import BoyIcon from "@mui/icons-material/Boy";
+import { CartProvider } from "react-use-cart";
 
 const listIcons = [
   {
@@ -68,97 +69,103 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <main className={`min-h-screen bg-white`}>
-      <AppBar
-        color="error"
-        className="flex flex-row items-center justify-between"
-      >
-        <div className="flex flex-row items-center w-full">
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={() => setOpen(!open)}
-              edge="start"
-              sx={{ mr: 2, ...(open && { display: "none" }) }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <h2>
-              Gym Administration System :{" "}
-              <span className="text-gray-100 font-bold">Administrator</span>
-            </h2>
-          </Toolbar>
-        </div>
-      </AppBar>
+      <CartProvider>
+        <AppBar
+          color="error"
+          className="flex flex-row items-center justify-between"
+        >
+          <div className="flex flex-row items-center w-full">
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={() => setOpen(!open)}
+                edge="start"
+                sx={{ mr: 2, ...(open && { display: "none" }) }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <h2>
+                Gym Administration System :{" "}
+                <span className="text-gray-100 font-bold">Administrator</span>
+              </h2>
+            </Toolbar>
+          </div>
+        </AppBar>
 
-      {children}
+        {children}
 
-      <Drawer
-        sx={{
-          width: 200,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
+        <Drawer
+          sx={{
             width: 200,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        style={{
-          backgroundColor: "#f5f5f5",
-        }}
-      >
-        <IconButton
-          sx={{
-            borderRadius: "0",
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: 200,
+              boxSizing: "border-box",
+            },
           }}
-          className=" h-12"
-          onClick={() => setOpen(!open)}
-        >
-          <ArrowBackIosIcon />
-        </IconButton>
-        <Divider />
-
-        <List>
-          {listIcons.map(({ name, icon, href }, index) => (
-            <Link
-              className={
-                router.pathname === href ? "block bg-red-600 text-white" : "text-gray-600"
-              }
-              href={href}
-              key={index}
-              onClick={() => setOpen(!open)}
-            >
-              <ListItem key={index} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon
-                  className={
-                    router.pathname === href ? "text-white" : "text-gray-600"
-                  }
-                  >
-                    {icon}
-                  </ListItemIcon>
-                  <ListItemText primary={name} />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          ))}
-        </List>
-
-        <IconButton
-          sx={{
-            borderRadius: "0",
-            fontSize: "0.9rem",
+          variant="persistent"
+          anchor="left"
+          open={open}
+          style={{
+            backgroundColor: "#f5f5f5",
           }}
-          className="h-12"
-          onClick={() => setOpen(!open)}
         >
-          <LogoutIcon /> Log Out
-        </IconButton>
+          <IconButton
+            sx={{
+              borderRadius: "0",
+            }}
+            className=" h-12"
+            onClick={() => setOpen(!open)}
+          >
+            <ArrowBackIosIcon />
+          </IconButton>
+          <Divider />
 
-        <Divider />
-      </Drawer>
+          <List>
+            {listIcons.map(({ name, icon, href }, index) => (
+              <Link
+                className={
+                  router.pathname === href
+                    ? "block bg-red-600 text-white"
+                    : "text-gray-600"
+                }
+                href={href}
+                key={index}
+                onClick={() => setOpen(!open)}
+              >
+                <ListItem key={index} disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon
+                      className={
+                        router.pathname === href
+                          ? "text-white"
+                          : "text-gray-600"
+                      }
+                    >
+                      {icon}
+                    </ListItemIcon>
+                    <ListItemText primary={name} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+
+          <IconButton
+            sx={{
+              borderRadius: "0",
+              fontSize: "0.9rem",
+            }}
+            className="h-12"
+            onClick={() => setOpen(!open)}
+          >
+            <LogoutIcon /> Log Out
+          </IconButton>
+
+          <Divider />
+        </Drawer>
+      </CartProvider>
     </main>
   );
 };
