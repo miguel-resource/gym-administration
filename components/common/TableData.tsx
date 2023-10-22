@@ -15,7 +15,7 @@ const TableData = ({ columns, rows, openModal, setOpenModal }: Props) => {
 
   return (
     <section className="mx-auto mt-20 space-x-4 mb-24">
-    {rows && rows.length > 0 ? (
+    {(rows && rows.length > 0) || items.length > 0 ? (
       <DataGrid
         onCellEditStop={(e) => console.log(e)}
         columns={columns}

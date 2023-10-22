@@ -2,11 +2,12 @@ import CommonLayout from "@/components/common/CommonLayout";
 import TableData from "@/components/common/TableData";
 import Tabs from "@/components/pos/Tabs";
 import { faker } from "@faker-js/faker";
-import { Chip, IconButton } from "@mui/material";
+import {  IconButton } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { lazy, useEffect, useState } from "react";
 import { CartProvider, useCart } from "react-use-cart";
 import DeleteIcon from "@mui/icons-material/Delete";
+import SubscriptionSection from "@/components/pos/SubscriptionSection";
 
 const ProductForm = lazy(() => import("@/components/pos/ProductsForm"));
 
@@ -83,7 +84,7 @@ const POS = () => {
                 />
               </div>
             )}
-            {/* {value === 1 && <Subscription />} */}
+            {value === 1 && <SubscriptionSection />}
           </div>
         </div>
       </CartProvider>

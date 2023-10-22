@@ -149,8 +149,9 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
         <IconButton
           sx={{
             borderRadius: "0",
+            fontSize: "0.9rem",
           }}
-          className="text-sm h-12"
+          className="h-12"
           onClick={() => setOpen(!open)}
         >
           <LogoutIcon /> Log Out
