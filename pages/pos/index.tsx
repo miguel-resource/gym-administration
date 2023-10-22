@@ -2,7 +2,12 @@ import CommonLayout from "@/components/common/CommonLayout";
 import TableData from "@/components/common/TableData";
 import Tabs from "@/components/pos/Tabs";
 import { faker } from "@faker-js/faker";
-import {  IconButton } from "@mui/material";
+import {
+  IconButton,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
+} from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { lazy, useEffect, useState } from "react";
 import { CartProvider, useCart } from "react-use-cart";
@@ -13,7 +18,7 @@ const ProductForm = lazy(() => import("@/components/pos/ProductsForm"));
 
 const POS = () => {
   const [value, setValue] = useState(0);
-  const {  items } = useCart();
+  const { items } = useCart();
   const [products, setProducts] = useState([] as any[]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const columns: GridColDef[] = [
@@ -76,7 +81,6 @@ const POS = () => {
                 <ProductForm products={products} />
                 <TableData
                   columns={columns}
-                  
                   openModal={false}
                   setOpenModal={function (open: boolean): void {
                     throw new Error("Function not implemented.");
@@ -86,6 +90,31 @@ const POS = () => {
             )}
             {value === 1 && <SubscriptionSection />}
           </div>
+          <SpeedDial
+            ariaLabel="SpeedDial basic example"
+            // slot="
+            sx={{
+              position: "fixed",
+              bottom: 16,
+              right: 16,
+              "& .MuiFab-primary": {
+                backgroundColor: "#F87171",
+                '&:hover': {
+                  backgroundColor: "#FFB8B8",
+                },
+              },
+            }}
+            icon={<SpeedDialIcon className="text-red-900 hover:text-white " />}
+          >
+            <SpeedDialAction
+              key="Add Product"
+              icon={<SpeedDialIcon />}
+              tooltipTitle="Add Product"
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            />
+          </SpeedDial>
         </div>
       </CartProvider>
     </CommonLayout>

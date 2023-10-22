@@ -62,7 +62,7 @@ const ProductForm = ({ products }: Props) => {
           width: "100%",
         }}
       >
-        <InputLabel id="product">Product </InputLabel>
+        <InputLabel id="product">Product</InputLabel>
         <Select
           id="product"
           labelId="product"
