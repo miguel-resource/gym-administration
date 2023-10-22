@@ -4,7 +4,6 @@ import TableData from "@/components/common/TableData";
 import { Chip, IconButton } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { faker } from "@faker-js/faker";
@@ -136,9 +135,10 @@ const Subscriptions = () => {
           />
           <IconButton
             sx={{
+              borderRadius: "0",
               fontSize: "0.9rem",
             }}
-            className="flex justify-center items-center  mt-24 text-sm rounded-none"
+            className="flex justify-center items-center  mt-24 text-sm"
             // variant="text"
           >
             <AddCircleIcon

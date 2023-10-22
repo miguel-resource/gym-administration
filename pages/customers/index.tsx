@@ -102,10 +102,11 @@ const Customers = () => {
           />
           <IconButton
             sx={{
+              borderRadius: "0",
               fontSize: "0.9rem",
             }}
-            className="flex justify-center items-center  mt-24 text-sm rounded-none"
-            // variant="text"
+            className="flex justify-center items-center  mt-24 text-sm "
+           
           >
             <AddCircleIcon 
               sx={{

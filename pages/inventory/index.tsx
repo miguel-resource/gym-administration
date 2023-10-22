@@ -114,8 +114,8 @@ const Inventory = () => {
             columnsForSearch={columns}
           />
           <IconButton
-            sx={{ fontSize: "0.9rem" }}
-            className="flex justify-center items-center  mt-24 rounded-none"
+            sx={{ fontSize: "0.9rem", borderRadius: "0" }}
+            className="flex justify-center items-center  mt-24"
           >
             <AddCircleIcon sx={{ mr: 1 }} /> Add Product
           </IconButton>
