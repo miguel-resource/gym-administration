@@ -10,6 +10,7 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
+import { CartProvider } from "react-use-cart";
 import Link from "next/link";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -23,7 +24,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import { useRouter } from "next/router";
 import LogoutIcon from "@mui/icons-material/Logout";
 import BoyIcon from "@mui/icons-material/Boy";
-import { CartProvider } from "react-use-cart";
+import PersonIcon from '@mui/icons-material/Person';
 
 const listIcons = [
   {
@@ -35,6 +36,11 @@ const listIcons = [
     name: "Point of Sale",
     icon: <PointOfSaleOutlinedIcon />,
     href: "/pos",
+  },
+  {
+    name: "Users",
+    icon: <PersonIcon />,
+    href: "/users",
   },
   {
     name: "Roles",
