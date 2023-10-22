@@ -126,7 +126,7 @@ const Payments = () => {
 
   return (
     <CommonLayout>
-      <section className="flex flex-col items-center justify-center w-full">
+      <section className="flex flex-col items-center mt-20 justify-center w-full">
         <div className="flex justify-center gap-4 items-center w-full mt-10">
           <SearchData
             data={data}

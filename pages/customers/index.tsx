@@ -93,7 +93,7 @@ const Customers = () => {
 
   return (
     <CommonLayout>
-      <section className="flex flex-col items-center justify-center w-full">
+      <section className="flex flex-col items-center mt-20 justify-center w-full">
         <div className="flex justify-center gap-4 items-center w-full mt-10">
           <SearchData
             data={data}
@@ -101,10 +101,17 @@ const Customers = () => {
             columnsForSearch={columns}
           />
           <IconButton
+            sx={{
+              fontSize: "0.9rem",
+            }}
             className="flex justify-center items-center  mt-24 text-sm rounded-none"
             // variant="text"
           >
-            <AddCircleIcon /> Add Customer
+            <AddCircleIcon 
+              sx={{
+                mr: 1
+              }}
+            /> Add Customer
           </IconButton>
         </div>
 

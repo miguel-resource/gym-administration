@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import NoData from "@/components/common/NoData";
 const Inventory = () => {
   const [data, setData] = useState<any[]>([]);
@@ -106,7 +106,7 @@ const Inventory = () => {
 
   return (
     <CommonLayout>
-      <section className="flex flex-col items-center justify-center w-full">
+      <section className="flex flex-col items-center mt-20 justify-center w-full">
         <div className="flex justify-center gap-4 items-center w-full mt-10">
           <SearchData
             data={data}
@@ -114,10 +114,10 @@ const Inventory = () => {
             columnsForSearch={columns}
           />
           <IconButton
-            className="flex justify-center items-center  mt-24 text-sm rounded-none"
-            // variant="text"
+            sx={{ fontSize: "0.9rem" }}
+            className="flex justify-center items-center  mt-24 rounded-none"
           >
-            <AddCircleIcon /> Add Product
+            <AddCircleIcon sx={{ mr: 1 }} /> Add Product
           </IconButton>
         </div>
 

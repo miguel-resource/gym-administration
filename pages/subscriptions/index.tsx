@@ -90,7 +90,7 @@ const Subscriptions = () => {
       headerName: "",
       sortable: false,
       width: 160,
-      
+
       renderCell: () => (
         <>
           <IconButton
@@ -127,7 +127,7 @@ const Subscriptions = () => {
   }, []);
   return (
     <CommonLayout>
-      <section className="flex flex-col items-center justify-center w-full">
+      <section className="flex flex-col items-center mt-20 justify-center w-full">
         <div className="flex justify-center gap-4 items-center w-full mt-10">
           <SearchData
             data={data}
@@ -135,10 +135,18 @@ const Subscriptions = () => {
             columnsForSearch={columns}
           />
           <IconButton
+            sx={{
+              fontSize: "0.9rem",
+            }}
             className="flex justify-center items-center  mt-24 text-sm rounded-none"
             // variant="text"
           >
-            <AddCircleIcon /> Add Subscription
+            <AddCircleIcon
+              sx={{
+                mr: 1,
+              }}
+            />{" "}
+            Add Subscription
           </IconButton>
         </div>
 
