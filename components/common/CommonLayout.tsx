@@ -110,7 +110,10 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
         }}
       >
         <IconButton
-          className="rounded-none h-12"
+          sx={{
+            borderRadius: "0",
+          }}
+          className=" h-12"
           onClick={() => setOpen(!open)}
         >
           <ArrowBackIosIcon />
@@ -144,7 +147,10 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
         </List>
 
         <IconButton
-          className="text-sm rounded-none h-12"
+          sx={{
+            borderRadius: "0",
+          }}
+          className="text-sm h-12"
           onClick={() => setOpen(!open)}
         >
           <LogoutIcon /> Log Out
