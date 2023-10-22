@@ -7,7 +7,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Gym Administration System</title>
+        <title>
+          Gym Admin Lite
+        </title>
+        <link rel="icon" href="/icon.png" />
       </Head>
       <Component {...pageProps} />
     </>

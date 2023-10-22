@@ -20,8 +20,9 @@ import PointOfSaleOutlinedIcon from "@mui/icons-material/PointOfSaleOutlined";
 import CreditCardRoundedIcon from "@mui/icons-material/CreditCardRounded";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import ListAltIcon from "@mui/icons-material/ListAlt";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import LogoutIcon from "@mui/icons-material/Logout";
+import BoyIcon from '@mui/icons-material/Boy';
 
 const listIcons = [
   {
@@ -33,6 +34,11 @@ const listIcons = [
     name: "Point of Sale",
     icon: <PointOfSaleOutlinedIcon />,
     href: "/pos",
+  },
+  {
+    name: "Roles",
+    icon: <BoyIcon />,
+    href: "/roles",
   },
   {
     name: "Inventory",
@@ -115,7 +121,7 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
           {listIcons.map(({ name, icon, href }, index) => (
             <Link
               className={
-                router.pathname === href ? "block bg-red-600" : "text-gray-600"
+                router.pathname === href ? "block bg-red-600 text-white" : "text-gray-600"
               }
               href={href}
               key={index}
@@ -124,9 +130,9 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
               <ListItem key={index} disablePadding>
                 <ListItemButton>
                   <ListItemIcon
-                  // className={
-                  //   router.pathname === href ? "text-white" : "text-gray-600"
-                  // }
+                  className={
+                    router.pathname === href ? "text-white" : "text-gray-600"
+                  }
                   >
                     {icon}
                   </ListItemIcon>
