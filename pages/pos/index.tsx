@@ -9,6 +9,7 @@ import { useCart } from "react-use-cart";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SubscriptionSection from "@/components/pos/SubscriptionSection";
 import ActionButtons from "@/components/common/ActionButtons";
+import TablePurchase from "@/components/pos/TablePurchase";
 
 const ProductForm = lazy(() => import("@/components/pos/ProductsForm"));
 
@@ -17,38 +18,6 @@ const POS = () => {
   const { emptyCart } = useCart();
   const [products, setProducts] = useState([] as any[]);
   const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const columns: GridColDef[] = [
-    { field: "name", headerName: "Name", width: 300 },
-    {
-      field: "quantity",
-      headerName: "Quantity",
-      width: 150,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 150,
-    },
-
-    {
-      field: "action",
-      headerName: "",
-      sortable: false,
-      width: 160,
-      renderCell: () => (
-        <>
-          <IconButton
-            onClick={() => {
-              setOpenModal(true);
-            }}
-          >
-            <DeleteIcon className="text-red-500" />
-          </IconButton>
-        </>
-      ),
-    },
-  ];
 
   const generateData = () => {
     return {
@@ -75,8 +44,7 @@ const POS = () => {
           {value === 0 && (
             <div className="flex flex-row items-center justify-center gap-7 p-10 mt-10 ">
               <ProductForm products={products} />
-              <TableData
-                columns={columns}
+              <TablePurchase
                 openModal={false}
                 setOpenModal={function (open: boolean): void {
                   throw new Error("Function not implemented.");
@@ -87,7 +55,7 @@ const POS = () => {
           {value === 1 && <SubscriptionSection />}
         </div>
 
-        <ActionButtons  />
+        <ActionButtons />
       </div>
     </CommonLayout>
   );

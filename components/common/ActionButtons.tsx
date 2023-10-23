@@ -1,5 +1,4 @@
 import { SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
-import Panel from "../home/Panel";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useCart } from "react-use-cart";
 

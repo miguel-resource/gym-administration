@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Autocomplete,
-  AutocompleteRenderInputParams,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  InputLabel,
-  MenuItem,
-  TextField,
-} from "@mui/material";
+import { Autocomplete, Button, FormControl, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useCart } from "react-use-cart";
 
@@ -21,27 +11,26 @@ type Props = {
 const ProductForm = ({ products }: Props) => {
   const { addItem } = useCart();
   const [product, setProduct] = useState("");
+  const [productName, setProductName] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [paymentMethod, setPaymentMethod] = useState("Tarjeta de crédito");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm({});
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async(data: any) => {
     const id = Math.floor(Math.random() * 10000) + 1;
-    // change id to string
-    const idString = id.toString();
-    const { product, quantity, name } = data;
-    const item = {
-      id: idString,
-      name,
-      product,
+    const price = Math.floor(Math.random() * 10000) + 1;
+
+    setIsSubmitting(true);
+    addItem({
+      id: id.toString(),
+      price: price,
+      name: productName,
       quantity,
-      price: 0,
-    };
-    addItem(item);
+    });
   };
 
   useEffect(() => {
@@ -64,24 +53,29 @@ const ProductForm = ({ products }: Props) => {
           disablePortal
           renderInput={(params) => <TextField {...params} label="Producto" />}
           options={products}
+          id="name"
+          {...register("name", { required: false })}
+          onChange={(e, value) => {
+            setProductName(value.label);
+          }}
         />
-        <span>
-          {errors && errors.product && "Debe seleccionar un producto"}
+        <span className="text-red-500 text-xs mt-1">
+          {productName === "" && isSubmitting ? "*Debe seleccionar un producto" : ""}
         </span>
       </FormControl>
 
       <FormControl>
         <TextField
           type="number"
-          value={quantity}
+          // value={quantity}
           defaultValue={0}
           {...register("quantity", { required: true, min: 1 })}
           minRows={1}
           label="Cantidad"
           onChange={(e) => setQuantity(e.target.value as any)}
         />
-        <span>
-          {errors && errors.quantity && "Debe seleccionar una cantidad"}
+        <span className="text-red-500 text-xs mt-1">
+          {errors && errors.quantity && "*Debe seleccionar una cantidad"}
         </span>
       </FormControl>
 
