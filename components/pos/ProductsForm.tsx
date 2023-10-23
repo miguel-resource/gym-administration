@@ -90,7 +90,7 @@ const ProductForm = ({ products }: Props) => {
           color: "red",
           margin: "0 auto",
           width: "20%",
-          backgroundColor: "red",
+          // backgroundColor: "red",
           ":hover": {
             backgroundColor: "none",
           },
