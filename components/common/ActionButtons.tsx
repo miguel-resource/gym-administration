@@ -42,7 +42,7 @@ const ActionButtons = ({ actions }: Props) => {
         ))
       ) : (
         <SpeedDialAction
-          sx={{ backgroundColor: "#F87171" }}
+          // sx={{ backgroundColor: "#F87171" }}
           tooltipTitle="Delete all products"
           icon={
             <DeleteIcon
