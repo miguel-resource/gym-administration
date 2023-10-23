@@ -9,10 +9,6 @@ import { useCart } from "react-use-cart";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SubscriptionSection from "@/components/pos/SubscriptionSection";
 import ActionButtons from "@/components/common/ActionButtons";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
 
 const ProductForm = lazy(() => import("@/components/pos/ProductsForm"));
 
@@ -57,7 +53,7 @@ const POS = () => {
   const generateData = () => {
     return {
       id: faker.datatype.uuid(),
-      name: faker.commerce.productName(),
+      label: faker.commerce.productName(),
       price: faker.commerce.price(),
       quantity: faker.datatype.number(),
       total: faker.commerce.price(),

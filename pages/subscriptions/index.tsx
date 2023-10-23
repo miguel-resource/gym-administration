@@ -11,10 +11,31 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import NoData from "@/components/common/NoData";
+import ActionButtons from "@/components/common/ActionButtons";
+import AddIcon from '@mui/icons-material/Add';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+
 const Subscriptions = () => {
   const [data, setData] = useState<any[]>([]);
   const [displayData, setDisplayData] = useState<any[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const actions = [
+    {
+      icon: <AddIcon className="text-red-500" />,
+      name: "Agregar Suscripción",
+      action: () => {
+        console.log("Add Subscription");
+      },
+    },
+    {
+      icon: <FileDownloadIcon className="text-red-500" />,
+      name: "Exportar tabla a Excel",
+      action: () => {
+        console.log("Export");
+      },
+    },
+  ];
 
   const columns: GridColDef[] = [
     {
@@ -133,21 +154,6 @@ const Subscriptions = () => {
             setDisplayData={setDisplayData}
             columnsForSearch={columns}
           />
-          <IconButton
-            sx={{
-              borderRadius: "0",
-              fontSize: "0.9rem",
-            }}
-            className="flex justify-center items-center  mt-24 text-sm"
-            // variant="text"
-          >
-            <AddCircleIcon
-              sx={{
-                mr: 1,
-              }}
-            />{" "}
-            Add Subscription
-          </IconButton>
         </div>
 
         {displayData.length > 0 ? (
@@ -160,6 +166,8 @@ const Subscriptions = () => {
         ) : (
           <NoData />
         )}
+
+        <ActionButtons actions={actions} />
       </section>
     </CommonLayout>
   );

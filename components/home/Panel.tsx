@@ -42,7 +42,7 @@ const Panel = () => {
                   variant="h6"
                   className="text-red-800  text-center"
                 >
-                  Customers registered
+                  Clientes
                 </Typography>
                 <Typography
                   variant="h6"
@@ -86,7 +86,7 @@ const Panel = () => {
                   variant="h6"
                   className="text-red-800  text-center"
                 >
-                  Active subscriptions
+                  Suscripciones activas
                 </Typography>
                 <Typography
                   variant="h6"
@@ -131,13 +131,14 @@ const Panel = () => {
                   variant="h6"
                   className="text-red-800  text-center"
                 >
-                  Total payments{" "}
+                  Ganancias
                   <Tooltip
-                    title="Total payments in this month"  
+                    title="Ganancias totales del mes"
                     placement="top"
                     arrow
+                    
                   >
-                    <HelpIcon className="text-base" />
+                    <HelpIcon className="text-base ml-2" />
                   </Tooltip>
                 </Typography>
                 <Typography

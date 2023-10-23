@@ -158,16 +158,17 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
             ))}
           </List>
 
-          <IconButton
-            sx={{
-              borderRadius: "0",
-              fontSize: "0.9rem",
-            }}
-            className="h-12"
+          <Link
+            // sx={{
+            //   borderRadius: "0",
+            //   fontSize: "0.9rem",
+            // }}
+            href="/login"
+            className="h-12 flex flex-row items-center justify-center hover:text-red-400 hover:bg-red-100"
             onClick={() => setOpen(!open)}
           >
             <LogoutIcon /> Log Out
-          </IconButton>
+          </Link>
 
           <Divider />
         </Drawer>

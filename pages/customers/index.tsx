@@ -4,11 +4,12 @@ import { Chip, IconButton } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-
+import AddIcon from "@mui/icons-material/Add";
 import { faker } from "@faker-js/faker";
 import TableData from "@/components/common/TableData";
 import NoData from "@/components/common/NoData";
+import ActionButtons from "@/components/common/ActionButtons";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 const Customers = () => {
   const [data, setData] = useState<any[]>([]);
@@ -70,6 +71,23 @@ const Customers = () => {
     },
   ];
 
+  const actions = [
+    {
+      icon: <AddIcon className="text-red-500" />,
+      name: "Agregar Cliente",
+      action: () => {
+        setOpenModal(true);
+      },
+    },
+    {
+      icon: <FileDownloadIcon className="text-red-500" />,
+      name: "Exportar tabla a Excel",
+      action: () => {
+        console.log("Export");
+      },
+    },
+  ];
+
   const generateData = () => {
     return {
       id: faker.string.uuid(),
@@ -100,20 +118,6 @@ const Customers = () => {
             setDisplayData={setDisplayData}
             columnsForSearch={columns}
           />
-          <IconButton
-            sx={{
-              borderRadius: "0",
-              fontSize: "0.9rem",
-            }}
-            className="flex justify-center items-center  mt-24 text-sm "
-           
-          >
-            <AddCircleIcon 
-              sx={{
-                mr: 1
-              }}
-            /> Add Customer
-          </IconButton>
         </div>
 
         {displayData.length > 0 ? (
@@ -124,8 +128,10 @@ const Customers = () => {
             setOpenModal={setOpenModal}
           />
         ) : (
-         <NoData />
+          <NoData />
         )}
+
+        <ActionButtons actions={actions} />
       </section>
     </CommonLayout>
   );

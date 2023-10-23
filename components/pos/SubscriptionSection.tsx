@@ -24,7 +24,7 @@ const SubscriptionSection = () => {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={[{ label: "The Shawshank Redemption" }]}
+            options={[{ label: "Luis" }, { label: "Juan" }]}
             sx={{ width: "50rem" }}
             renderInput={(params) => <TextField {...params} label="Socio" />}
             onChange={(e: any) => setValueChange(e.target.value)}

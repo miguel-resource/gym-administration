@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import {
+  Autocomplete,
+  AutocompleteRenderInputParams,
   Button,
   FormControl,
   FormLabel,
   Input,
   InputLabel,
   MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-import handler from '../../pages/api/hello';
 import { useCart } from "react-use-cart";
 
 type Props = {
@@ -30,21 +30,19 @@ const ProductForm = ({ products }: Props) => {
   } = useForm({});
 
   const onSubmit = (data: any) => {
-
     const id = Math.floor(Math.random() * 10000) + 1;
     // change id to string
     const idString = id.toString();
     const { product, quantity, name } = data;
-    const item = { 
+    const item = {
       id: idString,
       name,
       product,
       quantity,
       price: 0,
     };
-    console.log(item);
     addItem(item);
-  }
+  };
 
   useEffect(() => {
     if (products) {
@@ -62,21 +60,11 @@ const ProductForm = ({ products }: Props) => {
           width: "100%",
         }}
       >
-        <InputLabel id="product">Product</InputLabel>
-        <Select
-          id="product"
-          labelId="product"
-          label="Product"
-          {...register("product", { required: true })}
-          value={product}
-          onChange={(e) => setProduct(e.target.value)}
-        >
-          {products.map((product) => (
-            <MenuItem key={product.id} value={product.id}>
-              {product.name}
-            </MenuItem>
-          ))}
-        </Select>
+        <Autocomplete
+          disablePortal
+          renderInput={(params) => <TextField {...params} label="Producto" />}
+          options={products}
+        />
         <span>
           {errors && errors.product && "Debe seleccionar un producto"}
         </span>
@@ -97,8 +85,20 @@ const ProductForm = ({ products }: Props) => {
         </span>
       </FormControl>
 
-
-      <Button type="submit">Add to cart</Button>
+      <Button
+        sx={{
+          color: "red",
+          margin: "0 auto",
+          width: "20%",
+          backgroundColor: "red",
+          ":hover": {
+            backgroundColor: "none",
+          },
+        }}
+        type="submit"
+      >
+        Add to cart
+      </Button>
     </form>
   );
 };

@@ -2,28 +2,43 @@ import CommonLayout from "@/components/common/CommonLayout";
 import NoData from "@/components/common/NoData";
 import SearchData from "@/components/common/SearchData";
 import TableData from "@/components/common/TableData";
-import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
-import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { faker } from "@faker-js/faker";
 import { Chip, IconButton } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import HomeIcon from "@mui/icons-material/Home";
 import RememberMeOutlinedIcon from "@mui/icons-material/RememberMeOutlined";
 import PointOfSaleOutlinedIcon from "@mui/icons-material/PointOfSaleOutlined";
 import CreditCardRoundedIcon from "@mui/icons-material/CreditCardRounded";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import BoyIcon from '@mui/icons-material/Boy';
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
+import ActionButtons from "@/components/common/ActionButtons";
+import AddIcon from '@mui/icons-material/Add';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 const Roles = () => {
   const [data, setData] = useState<any[]>([]);
   const [displayData, setDisplayData] = useState<any[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const actions = [
+    {
+      icon: <AddIcon className="text-red-500" />,
+      name: "Agregar Rol",
+      action: () => {
+        console.log("Add Role");
+      },
+    },
+    {
+      icon: <FileDownloadIcon className="text-red-500" />,
+      name: "Exportar tabla a Excel",
+      action: () => {
+        console.log("Export");
+      },
+    },
+  ];
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 310 },
@@ -145,6 +160,8 @@ const Roles = () => {
           <NoData />
         )}
       </section>
+
+      <ActionButtons actions={actions} />
     </CommonLayout>
   );
 };

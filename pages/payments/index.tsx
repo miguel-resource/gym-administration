@@ -5,15 +5,26 @@ import { faker } from "@faker-js/faker";
 import { Chip, IconButton } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import EditIcon from "@mui/icons-material/Edit";
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DeleteIcon from "@mui/icons-material/Delete";
 import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import NoData from "@/components/common/NoData";
+import ActionButtons from "@/components/common/ActionButtons";
 const Payments = () => {
   const [data, setData] = useState<any[]>([]);
   const [displayData, setDisplayData] = useState<any[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const actions = [
+    {
+      icon: <FileDownloadIcon className="text-red-500" />,
+      name: "Exportar tabla a Excel",
+      action: () => {
+        console.log("Export");
+      },
+    },
+  ];
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 300 },
@@ -145,6 +156,8 @@ const Payments = () => {
         ) : (
           <NoData />
         )}
+
+        <ActionButtons actions={actions} />
       </section>
     </CommonLayout>
   );

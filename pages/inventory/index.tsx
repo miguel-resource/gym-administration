@@ -5,13 +5,15 @@ import { Chip, IconButton } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { faker } from "@faker-js/faker";
 import SearchData from "@/components/common/SearchData";
-import EditIcon from "@mui/icons-material/Edit";
 import { useEffect, useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import NoData from "@/components/common/NoData";
+import ActionButtons from "@/components/common/ActionButtons";
+import AddIcon from '@mui/icons-material/Add';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 const Inventory = () => {
   const [data, setData] = useState<any[]>([]);
@@ -96,6 +98,23 @@ const Inventory = () => {
     };
   };
 
+  const actions = [
+    {
+      icon: <AddIcon className="text-red-500" />, 
+      name: "Agregar Producto",
+      action: () => {
+        console.log("Delete");
+      },
+    },
+    {
+      icon: <FileDownloadIcon className="text-red-500" />, // "file_download
+      name: "Exportar tabla a Excel",
+      action: () => {
+        console.log("Export");
+      },
+    }
+  ];
+
   const rows = faker.helpers.multiple(generateData, {
     count: 100,
   });
@@ -114,12 +133,6 @@ const Inventory = () => {
             setDisplayData={setDisplayData}
             columnsForSearch={columns}
           />
-          <IconButton
-            sx={{ fontSize: "0.9rem", borderRadius: "0" }}
-            className="flex justify-center items-center  mt-24"
-          >
-            <AddCircleIcon sx={{ mr: 1 }} /> Add Product
-          </IconButton>
         </div>
 
         {displayData.length > 0 ? (
@@ -132,6 +145,8 @@ const Inventory = () => {
         ) : (
           <NoData />
         )}
+
+        <ActionButtons actions={actions} />
       </section>
     </CommonLayout>
   );

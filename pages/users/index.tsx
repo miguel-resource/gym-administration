@@ -3,19 +3,36 @@ import NoData from "@/components/common/NoData";
 import SearchData from "@/components/common/SearchData";
 import TableData from "@/components/common/TableData";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import CheckroomIcon from "@mui/icons-material/Checkroom";
-import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
-import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { faker } from "@faker-js/faker";
 import { Chip, IconButton } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
+import ActionButtons from "@/components/common/ActionButtons";
+import AddIcon from '@mui/icons-material/Add';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 const Users = () => {
   const [data, setData] = useState<any[]>([]);
   const [displayData, setDisplayData] = useState<any[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const actions = [
+    {
+      icon: <AddIcon className="text-red-500" />,
+      name: "Agregar Usuario",
+      action: () => {
+        console.log("Add User");
+      },
+    },
+    {
+      icon: <FileDownloadIcon className="text-red-500" />,
+      name: "Exportar tabla a Excel",
+      action: () => {
+        console.log("Export");
+      },
+    },
+  ];
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 300 },
@@ -92,6 +109,7 @@ const Users = () => {
           <NoData />
         )}
       </section>
+      <ActionButtons actions={actions} />
     </CommonLayout>
   );
 };
