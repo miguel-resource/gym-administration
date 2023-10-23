@@ -46,10 +46,11 @@ const ActionButtons = ({ actions }: Props) => {
           tooltipTitle="Delete all products"
           icon={
             <DeleteIcon
-              sx={{
-                color: "#F87171",
-                "&:hover": { color: "#F87171" },
-              }}
+              className="text-red-500"
+              // sx={{
+              //   color: "#F87171",
+              //   "&:hover": { color: "#F87171" },
+              // }}
             />
           }
           onClick={() => {

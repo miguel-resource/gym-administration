@@ -21,58 +21,105 @@ import PointOfSaleOutlinedIcon from "@mui/icons-material/PointOfSaleOutlined";
 import CreditCardRoundedIcon from "@mui/icons-material/CreditCardRounded";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import ListAltIcon from "@mui/icons-material/ListAlt";
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import LogoutIcon from "@mui/icons-material/Logout";
 import BoyIcon from "@mui/icons-material/Boy";
-import PersonIcon from '@mui/icons-material/Person';
-
-const listIcons = [
-  {
-    name: "Home",
-    icon: <HomeIcon />,
-    href: "/",
-  },
-  {
-    name: "Point of Sale",
-    icon: <PointOfSaleOutlinedIcon />,
-    href: "/pos",
-  },
-  {
-    name: "Users",
-    icon: <PersonIcon />,
-    href: "/users",
-  },
-  {
-    name: "Roles",
-    icon: <BoyIcon />,
-    href: "/roles",
-  },
-  {
-    name: "Inventory",
-    icon: <ListAltIcon />,
-    href: "/inventory",
-  },
-  {
-    name: "Customers",
-    icon: <RememberMeOutlinedIcon />,
-    href: "/customers",
-  },
-  {
-    name: "Subscriptions",
-    icon: <CreditCardRoundedIcon />,
-    href: "/subscriptions",
-  },
-  {
-    name: "Payments",
-    icon: <RequestQuoteIcon />,
-    href: "/payments",
-  },
-];
+import PersonIcon from "@mui/icons-material/Person";
 
 const CommonLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
+  const listIcons = [
+    {
+      name: "Home",
+      icon: (
+        <HomeIcon
+          className={router.pathname === "/" ? "text-white" : "text-gray-600"}
+        />
+      ),
+      href: "/",
+    },
+    {
+      name: "Point of Sale",
+      icon: (
+        <PointOfSaleOutlinedIcon
+          className={
+            router.pathname === "/pos" ? "text-white" : "text-gray-600"
+          }
+        />
+      ),
+      href: "/pos",
+    },
+    {
+      name: "Users",
+      icon: (
+        <PersonIcon
+          className={
+            router.pathname === "/users" ? "text-white" : "text-gray-600"
+          }
+        />
+      ),
+      href: "/users",
+    },
+    {
+      name: "Roles",
+      icon: (
+        <BoyIcon
+          className={
+            router.pathname === "/roles" ? "text-white" : "text-gray-600"
+          }
+        />
+      ),
+      href: "/roles",
+    },
+    {
+      name: "Inventory",
+      icon: (
+        <ListAltIcon
+          className={
+            router.pathname === "/inventory" ? "text-white" : "text-gray-600"
+          }
+        />
+      ),
+      href: "/inventory",
+    },
+    {
+      name: "Customers",
+      icon: (
+        <RememberMeOutlinedIcon
+          className={
+            router.pathname === "/customers" ? "text-white" : "text-gray-600"
+          }
+        />
+      ),
+      href: "/customers",
+    },
+    {
+      name: "Subscriptions",
+      icon: (
+        <CreditCardRoundedIcon
+          className={
+            router.pathname === "/subscriptions"
+              ? "text-white"
+              : "text-gray-600"
+          }
+        />
+      ),
+      href: "/subscriptions",
+    },
+    {
+      name: "Payments",
+      icon: (
+        <RequestQuoteIcon
+          className={
+            router.pathname === "/payments" ? "text-white" : "text-gray-600"
+          }
+        />
+      ),
+      href: "/payments",
+    },
+  ];
   return (
     <main className={`min-h-screen bg-white`}>
       <CartProvider>
@@ -142,15 +189,7 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
               >
                 <ListItem key={index} disablePadding>
                   <ListItemButton>
-                    <ListItemIcon
-                      className={
-                        router.pathname === href
-                          ? "text-white"
-                          : "text-gray-600"
-                      }
-                    >
-                      {icon}
-                    </ListItemIcon>
+                    <ListItemIcon>{icon}</ListItemIcon>
                     <ListItemText primary={name} />
                   </ListItemButton>
                 </ListItem>
@@ -159,10 +198,6 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
           </List>
 
           <Link
-            // sx={{
-            //   borderRadius: "0",
-            //   fontSize: "0.9rem",
-            // }}
             href="/login"
             className="h-12 flex flex-row items-center justify-center hover:text-red-400 hover:bg-red-100"
             onClick={() => setOpen(!open)}
